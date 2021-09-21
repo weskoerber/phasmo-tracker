@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>weskoerber's phasmo-tracker</title>
     <link rel="stylesheet" href="./css/evidence_item.css"/>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
 <div class="main">
@@ -22,7 +22,7 @@
         </div>
 
         <h1 id="asdf">Timer</h1>
-        <div id="start_timer">
+        <div id="timer">
             <p id="timer_counter">0:00</p>
             <input id="start_timer" type="button" value="Start">
             <input id="stop_timer" type="button" value="Stop">
@@ -30,7 +30,9 @@
 
         <h1>About the Ghost</h1>
         <div id="about_ghost">
-            <p>Ghost's name</p>
+            <label for="ghost_name">Name:</label>
+            <input id="ghost_name" type="text" name="ghost_name" />
+
             <p>Shy?</p>
         </div>
 

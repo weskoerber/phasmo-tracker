@@ -1,3 +1,6 @@
+import Timer from './js/timer.js'
+const timer = new Timer()
+
 const difficulty_amateur = { multiplier: 1, timer: 5 }
 const difficulty_intermediate = { multiplier: 2, timer: 2 }
 const difficulty_professional = { multiplier: 3, timer: 0 }
@@ -7,11 +10,9 @@ let cbAma = null
 let cbInt = null
 let cbPro = null
 
-// Timer
-let counter = { start: 0, current: 0, intervalID: null, running: false}
-let timer = null
 let start = null
-let stopReset = null
+let stop = null
+let reset = false
 
 window.addEventListener('load', init, false)
 
@@ -21,9 +22,10 @@ function init() {
     cbInt = document.getElementById('difficulty_intermediate')
     cbPro = document.getElementById('difficulty_professional')
 
-    timer = getTimer()
     start = document.getElementById('start_timer')
-    stopReset = document.getElementById('stop_timer')
+    stop = document.getElementById('stop_timer')
+
+    timer.element = document.getElementById('timer_counter')
 
     cbAma.checked = false
     cbInt.checked = false
@@ -34,8 +36,18 @@ function init() {
     cbInt.addEventListener('change', () => difficultyHandler(difficulty_intermediate))
     cbPro.addEventListener('change', () => difficultyHandler(difficulty_professional))
 
-    start.addEventListener('click', timerStart)
-    stopReset.addEventListener('click', timerStop)
+    start.addEventListener('click', () => timer.start())
+    stop.addEventListener('click', () => {
+        timer.stop()
+        if (reset === false && timer.running === true) {
+            reset = true
+            stop.value = 'Reset'
+        } else {
+            reset = false
+            stop.value = 'Stop'
+            timer.reset()
+        }
+    })
 }
 
 function difficultyHandler(difficulty) {
@@ -53,41 +65,10 @@ function difficultyHandler(difficulty) {
             break
     }
 
-    counter.start = 60 * difficulty.timer
-    setTimer(counter.start)
-}
-
-function getTimer() {
-    return document.getElementById('timer_counter')
-}
-
-function setTimer(seconds) {
-    let _t = getTimer()
-    _t.innerHTML = seconds.toString()
+    timer.duration = (60 * difficulty.timer)
+    document.getElementById('timer_counter').innerHTML = timer.duration.toString()
 }
 
 function difficultyClearAll() {
     cbAma.checked = cbInt.checked = cbPro.checked = false
-}
-
-function timerStart() {
-    console.log(counter)
-    if (counter.running !== false && counter.start <= 0) {
-        return
-    }
-
-    counter.running = true
-    counter.intervalID = setInterval(() => {
-        counter.current++
-        setTimer(counter.start - counter.current)
-    }, 1000)
-
-    console.log(counter.intervalID + ': START')
-}
-
-function timerStop() {
-    clearInterval(counter.intervalID)
-    counter.running = false
-
-    console.log(counter.intervalID + ': STOP')
 }
