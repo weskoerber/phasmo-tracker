@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--    <link href="./css/tailwind.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="./css/bulma.min.css">
+    <title>weskoerber's phasmo-tracker</title>
+    <script type="module" src="index.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="columns">
+        <div class="column">
+            <div class="section">
+                <p class="title">Difficulty</p>
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input id="difficulty_amateur" type="radio" name="difficulty">
+                            Amateur
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input id="difficulty_intermediate" type="radio" name="difficulty">
+                            Intermediate
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input id="difficulty_professional" type="radio" name="difficulty">
+                            Professional
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <p class="title">Timer</p>
+                <div id="timer">
+                    <p id="timer_counter" class="subtitle">0:00</p>
+                    <button id="start_timer" class="button is-success">Start</button>
+                    <button id="stop_timer" class="button is-warning">Stop</button>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <p class="title">About the Ghost</p>
+                <div id="about_ghost">
+                    <label for="ghost_name">Name:</label>
+                    <input id="ghost_name" type="text" name="ghost_name"/>
+
+                    <p>Shy?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="section">
+                <p class="title">Objectives</p>
+                <div id="objectives">
+                    <ol>
+                        <li>Ghost type</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="section">
+                <p class="title">Possible Ghosts</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="level" id="evidence_selector">
+        <div class="level-item" id="emf">
+            <p id="emf_button" class="button is-large is-light">EMF 5</p>
+        </div>
+        <div class="level-item" id="spirit_box">
+            <p id="spirit_box_button" class="button is-large is-light">Spirit Box</p>
+        </div>
+        <div class="level-item" id="fingerprints">
+            <p id="prints_button" class="button is-large is-light">Fingerprints</p>
+        </div>
+        <div class="level-item" id="orbs">
+            <p id="orbs_button" class="button is-large is-light">Ghost Orbs</p>
+        </div>
+    </nav>
+    <nav class="level">
+        <div class="level-item" id="writing">
+            <p id="writing_button" class="button is-large is-light">Writing</p>
+        </div>
+        <div class="level-item" id="freezing_temps">
+            <p id="freezing_button" class="button is-large is-light">Freezing Temps</p>
+        </div>
+        <div class="level-item" id="dots">
+            <p id="dots_button" class="button is-large is-light">DOTS</p>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
